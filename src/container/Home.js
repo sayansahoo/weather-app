@@ -8,6 +8,7 @@ import CurrentWeather from "./CurrentWeather";
 import WeatherCondition from "./WeatherCondition";
 import DailyWeather from "./DailyWeather";
 import SunTimings from "./SunTimingsChart";
+import { Skeleton } from "@material-ui/lab";
 
 const StyledMainContainer = styled.div`
   @media (max-width: 480px) {
@@ -123,7 +124,7 @@ class Home extends Component {
     const { data, userCoords, weatherData, shouldSend } = this.state;
     return (
       <div>
-        {shouldSend && (
+        {shouldSend ? (
           <StyledMainContainer>
             <Search getUserLocation={this.getUserLocation} />
             <DailyWeather data={weatherData} />
@@ -136,9 +137,19 @@ class Home extends Component {
                 </StyledChart>
               </StyledContainer>
               <WeatherCondition data={weatherData} />
-              <SunTimings userCoords={userCoords}/>
+              <SunTimings userCoords={userCoords} />
             </StyledChartContainer>
           </StyledMainContainer>
+        ) : (
+          <div>
+            <Skeleton variant="text" />
+            <Skeleton
+              variant="rect"
+              width={1000}
+              height={1000}
+              animation="wave"
+            />
+          </div>
         )}
       </div>
     );
