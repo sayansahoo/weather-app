@@ -17,7 +17,7 @@ const CurrentWeather = (props) => {
         <div
           style={{ fontSize: "55px", fontWeight: "bold" }}
         >{`${data.current.temp}°C`}</div>{" "}
-        &emsp; &emsp;
+        &emsp;
         <img style={{ height: 60, width: 60 }} src={getIcon(weather).icon} />
       </div>
     </StyledContainer>

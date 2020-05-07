@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { fetchWeather } from "../utils/api";
+import { fetchWeather, fetchCoordinates } from "../utils/api";
 import ChartPage from "./ChartPage";
 import { getTime } from "../utils/helper";
 import Search from "./Search";
@@ -99,25 +99,43 @@ class Home extends Component {
 
   setData = () => {
     let data = this.state.data;
-    let { weatherData, userCoords } = this.state;
+    console.log(data.datasets[0].data, 'labels up')
+    let { weatherData } = this.state;
     let hours = [];
     hours = weatherData.hourly.map((a) => this.getHour(a.dt));
     hours = hours.slice(0, 24);
+    if(data.labels.length> 0) {
+      data.labels = [];
+    }
     data.labels.push(...hours);
     for (let i = 0; i < data.labels.length; i++) {
       data.labels[i] = [data.labels[i]];
     }
     let temperature = weatherData.hourly.map((a) => a.temp).slice(0, 24);
     temperature = temperature.slice(0, 24);
+    if(data.datasets[0].data.length> 0) {
+      data.datasets[0].data = [];
+    }
     for (let i = 0; i < data.labels.length; i++) {
       data.labels[i].unshift(`${temperature[i]}°`);
     }
     data.datasets[0].data.push(...temperature);
+    console.log(data.datasets[0].data, 'labels down')
     this.setState({ data, shouldSend: true });
   };
 
   getUserLocation = () => {
     window.navigator.geolocation.getCurrentPosition(this.onUserLocationSuccess);
+  };
+
+  fetchLatLng = async (city) => {
+    let userCoords = { ...this.state.userCoords };
+    const res = await fetchCoordinates(city);
+    userCoords.lat = res.data.results[0].geometry.location.lat;
+    userCoords.lng = res.data.results[0].geometry.location.lng;
+    this.setState({ userCoords }, () => {
+      this.fetchWeatherDetails();
+    });
   };
 
   render() {
@@ -126,9 +144,11 @@ class Home extends Component {
       <div>
         {shouldSend ? (
           <StyledMainContainer>
-            <Search getUserLocation={this.getUserLocation} />
+            <Search
+              getUserLocation={this.getUserLocation}
+              fetchCoordinates={this.fetchLatLng}
+            />
             <DailyWeather data={weatherData} />
-
             <StyledChartContainer>
               <CurrentWeather data={weatherData} />
               <StyledContainer>
@@ -137,7 +157,7 @@ class Home extends Component {
                 </StyledChart>
               </StyledContainer>
               <WeatherCondition data={weatherData} />
-              <SunTimings userCoords={userCoords} />
+              <SunTimings data = {weatherData} userCoords={userCoords} />
             </StyledChartContainer>
           </StyledMainContainer>
         ) : (

@@ -20,73 +20,76 @@ export const getTime = (time) => {
   return hours;
 };
 
-
-export const getDay = (day)=> {
- let arr = [
-   {
-     n: 0,
-     day: 'Sun'
-   },
-   {
-    n: 1,
-    day: 'Mon'
-  },
-  {
-    n: 2,
-    day: 'Tue'
-  },
-  {
-    n: 3,
-    day: 'Wed'
-  },
-  {
-    n: 4,
-    day: 'Thu'
-  },
-  {
-    n: 5,
-    day: 'Fri'
-  },
-  {
-    n: 6,
-    day: 'Sat'
-  }
- ]
- let date = new Date(day*1000)
- let n = date.getUTCDay();
- let res = arr.filter(a=>a.n===n);
- return (res[0].day)
-}
+export const getDay = (day) => {
+  let arr = [
+    {
+      n: 0,
+      day: "Sun",
+    },
+    {
+      n: 1,
+      day: "Mon",
+    },
+    {
+      n: 2,
+      day: "Tue",
+    },
+    {
+      n: 3,
+      day: "Wed",
+    },
+    {
+      n: 4,
+      day: "Thu",
+    },
+    {
+      n: 5,
+      day: "Fri",
+    },
+    {
+      n: 6,
+      day: "Sat",
+    },
+  ];
+  let date = new Date(day * 1000);
+  let n = date.getUTCDay();
+  let res = arr.filter((a) => a.n === n);
+  return res[0].day;
+};
 
 export const getIcon = (weather) => {
   let icon = "";
   let weatherCondition = "";
   if (weather.toLowerCase().includes("clouds")) {
     icon = require("../assets/cloudy.svg");
-    weatherCondition = 'Cloudy'
+    weatherCondition = "Cloudy";
   }
-  if(weather.toLowerCase().includes('clear')) {
+  if (weather.toLowerCase().includes("clear")) {
     icon = require("../assets/shapes-and-symbols.svg");
-    weatherCondition = "Sunny"
+    weatherCondition = "Sunny";
   }
-  if(weather.toLowerCase().includes('haze')) {
+  if (weather.toLowerCase().includes("haze")) {
     icon = require("../assets/haze.svg");
-    weatherCondition = "Hazy"
+    weatherCondition = "Hazy";
   }
-  if(weather.toLowerCase().includes('rain')) {
+  if (weather.toLowerCase().includes("rain")) {
     icon = require("../assets/rain.svg");
-    weatherCondition = "Rainy"
+    weatherCondition = "Rainy";
   }
-  if(weather.toLowerCase().includes('thunderstorm')) {
+  if (weather.toLowerCase().includes("thunderstorm")) {
     icon = require("../assets/thunderstorm.svg");
-    weatherCondition = "Thunderstorm"
+    weatherCondition = "Thunderstorm";
   }
-  if(weather.toLowerCase().includes('nil')) {
+  if (weather.toLowerCase().includes("snow")) {
+    icon = require("../assets/snow.svg");
+    weatherCondition = "Snowy";
+  }
+  if (weather.toLowerCase().includes("nil")) {
     icon = require("../assets/number.svg");
-    weatherCondition = "Nil"
+    weatherCondition = "Nil";
   }
-  return{
+  return {
     icon,
-    weatherCondition
+    weatherCondition,
   };
-}
+};

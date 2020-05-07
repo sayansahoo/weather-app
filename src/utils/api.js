@@ -35,3 +35,13 @@ export const fetchPlaces = async (place) => {
   }
   return response;
 };
+
+export const fetchCoordinates = async (place) => {
+  let response = "";
+  try {
+    response = await axios.get(`https://weather-api-backend-sayan.herokuapp.com/geocode/?place=${place}`);
+  } catch (error) {
+    console.error(error);
+  }
+  return response;
+};

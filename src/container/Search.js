@@ -42,7 +42,7 @@ const StyledDropdown = styled.div`
   left: 0;
   right: 0;
   border-radius: 10px;
-  border: ${(props) => props.isResult && "0.6px solid grey"};
+  border: ${props=>!props.isClicked && '0.6px solid grey'};
   padding: 10px;
 `;
 
@@ -74,6 +74,7 @@ const StyledTemp = styled.div`
 
 class SampleSearch extends Component {
   state = {
+    isClicked: false,
     searchTerm: "",
     suggestions: [],
   };
@@ -85,7 +86,7 @@ class SampleSearch extends Component {
   };
 
   onEnterSearch = (e) => {
-    this.setState({ searchTerm: e.target.value }, () => {
+    this.setState({ searchTerm: e.target.value, isClicked: false }, () => {
       this.fetchPlaceDetails(this.state.searchTerm);
     });
   };
@@ -122,10 +123,14 @@ class SampleSearch extends Component {
     this.setState({ suggestions: newArr });
   };
 
+  onClickSearchTerm = (city) => {
+    this.props.fetchCoordinates(city);
+    this.setState({ isClicked: true, searchTerm: city });
+  };
+
   render() {
-    const { searchTerm, suggestions } = this.state;
+    const { searchTerm, suggestions, isClicked } = this.state;
     const { getUserLocation } = this.props;
-    
     return (
       <StyledContainer>
         <StyledSearchContainer>
@@ -141,25 +146,31 @@ class SampleSearch extends Component {
           />
           <FontAwesomeIcon icon={faSearch} size="lg" />
         </StyledSearchContainer>
-        <StyledDropdown isResult={suggestions && searchTerm.length > 0}>
-          {searchTerm.length>0 && 
-            suggestions.map((a, idx) => {
-              return (
-                <StyledList key={idx}>
-                  <div>
-                    <span>
-                      <strong>{a.mainText}</strong>,{" "}
-                    </span>
-                    <span>{a.secondaryText}</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <StyledTemp>{a.temp}</StyledTemp> &nbsp; &nbsp;
-                    <StyledImage src={getIcon(a.weatherCondition).icon} />
-                  </div>
-                </StyledList>
-              );
-            })}
-        </StyledDropdown>
+        {suggestions && searchTerm.length > 0 && (
+          <StyledDropdown isClicked={isClicked}>
+            {searchTerm.length > 0 &&
+              !isClicked &&
+              suggestions.map((a, idx) => {
+                return (
+                  <StyledList
+                    key={idx}
+                    onClick={() => this.onClickSearchTerm(a.mainText)}
+                  >
+                    <div>
+                      <span>
+                        <strong>{a.mainText}</strong>,{" "}
+                      </span>
+                      <span>{a.secondaryText}</span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <StyledTemp>{a.temp}</StyledTemp> &nbsp; &nbsp;
+                      <StyledImage src={getIcon(a.weatherCondition).icon} />
+                    </div>
+                  </StyledList>
+                );
+              })}
+          </StyledDropdown>
+        )}
       </StyledContainer>
     );
   }

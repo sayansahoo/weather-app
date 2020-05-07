@@ -50,7 +50,6 @@ const StyledImage = styled.img`
 
 const DailyWeather = (props) => {
   let days = props.data.daily.slice(0, 7);
-
   return (
     <StyledContainer>
       <StyledSecondContainer>

@@ -36,17 +36,27 @@ class SunTimings extends Component {
   };
 
   componentDidMount() {
-    this.fetchWeatherDetails();
-  }
-
-  fetchWeatherDetails = async () => {
-    this.setState({ shouldShow: false });
-    const { lat, lng } = this.props.userCoords;
-    const response = await fetchWeather(lat, lng);
-    this.setState({ weatherData: response.data }, () => {
+    // this.fetchWeatherDetails();
+    this.setState({ weatherData: this.props.data, shouldShow: false }, () => {
       this.setData();
     });
-  };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)) {
+      this.setState({ weatherData: this.props.data, shouldShow: false }, () =>
+        this.setData()
+      );
+    }
+  }
+  // fetchWeatherDetails = async () => {
+  //   this.setState({ shouldShow: false });
+  //   const { lat, lng } = this.props.userCoords;
+  //   const response = await fetchWeather(lat, lng);
+  //   this.setState({ weatherData: response.data }, () => {
+  //     this.setData();
+  //   });
+  // };
 
   getHour = (timestamp) => {
     let date = new Date(timestamp * 1000);
@@ -64,9 +74,6 @@ class SunTimings extends Component {
     let sunset = parseFloat(this.getHour(sunsetUnix));
     this.setState({ sunrise, sunset });
     data.datasets[0].data.push(sunrise, 12, sunset);
-
-    let timeNow = moment().format("h:mm");
-
     this.setState({ data: data, shouldShow: true });
   };
 

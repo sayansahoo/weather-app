@@ -10,6 +10,7 @@ class ChartPage extends Component {
     this.setState({ data: this.props.data });
   }
 
+
   render() {
     const { data } = this.state;
     return (
