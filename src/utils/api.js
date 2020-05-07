@@ -1,4 +1,4 @@
-const API_KEY = "68078fb5c09f9f1e03cd32e0c5ed7092";
+const API_KEY = "";
 const axios = require("axios");
 
 export const fetchWeather = async (lat = 19.076, lon = 72.8777) => {
