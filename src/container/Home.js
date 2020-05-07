@@ -99,7 +99,6 @@ class Home extends Component {
 
   setData = () => {
     let data = this.state.data;
-    console.log(data.datasets[0].data, 'labels up')
     let { weatherData } = this.state;
     let hours = [];
     hours = weatherData.hourly.map((a) => this.getHour(a.dt));
@@ -120,7 +119,6 @@ class Home extends Component {
       data.labels[i].unshift(`${temperature[i]}°`);
     }
     data.datasets[0].data.push(...temperature);
-    console.log(data.datasets[0].data, 'labels down')
     this.setState({ data, shouldSend: true });
   };
 
