@@ -92,7 +92,6 @@ class SampleSearch extends Component {
 
   getCityWeather = async (city) => {
     const response = await fetchCityWeather(city);
-    console.log(response.data)
     if (response) {
       return {
         weatherCondition: response.data.weather[0].main,
@@ -142,7 +141,7 @@ class SampleSearch extends Component {
           />
           <FontAwesomeIcon icon={faSearch} size="lg" />
         </StyledSearchContainer>
-        <StyledDropdown isResult={searchTerm.length > 0}>
+        <StyledDropdown isResult={suggestions && searchTerm.length > 0}>
           {searchTerm.length>0 && 
             suggestions.map((a, idx) => {
               return (

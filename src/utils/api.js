@@ -1,4 +1,4 @@
-const API_KEY = "";
+const API_KEY = "68078fb5c09f9f1e03cd32e0c5ed7092";
 const axios = require("axios");
 
 export const fetchWeather = async (lat = 19.076, lon = 72.8777) => {
@@ -29,7 +29,7 @@ export const fetchCityWeather = async (city = "Mumbai") => {
 export const fetchPlaces = async (place) => {
   let response = "";
   try {
-    response = await axios.get(`http://localhost:5000/?place=${place}`);
+    response = await axios.get(`https://weather-api-backend-sayan.herokuapp.com/?place=${place}`);
   } catch (error) {
     console.error(error);
   }
