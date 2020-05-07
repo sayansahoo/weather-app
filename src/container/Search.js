@@ -55,6 +55,7 @@ const StyledList = styled.div`
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const StyledImage = styled.img`
