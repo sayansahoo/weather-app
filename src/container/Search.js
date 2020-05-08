@@ -132,6 +132,7 @@ class SampleSearch extends Component {
   render() {
     const { searchTerm, suggestions, isClicked } = this.state;
     const { getUserLocation } = this.props;
+    
     return (
       <StyledContainer>
         <StyledSearchContainer>
@@ -149,6 +150,7 @@ class SampleSearch extends Component {
         </StyledSearchContainer>
         {suggestions && searchTerm.length > 0 && (
           <StyledDropdown isClicked={isClicked}>
+            {!suggestions.length> 0 && <span>You have exhausted your daily quota limit</span>}
             {searchTerm.length > 0 &&
               !isClicked &&
               suggestions.map((a, idx) => {
