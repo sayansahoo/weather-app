@@ -10,6 +10,7 @@ const StyledContainer = styled.div`
 const CurrentWeather = (props) => {
   const { data } = props;
   const weather = data.current.weather[0].main.toLowerCase();
+
   return (
     <StyledContainer>
       <div style={{ display: "flex", alignItems: "center" }}>

@@ -84,6 +84,10 @@ export const getIcon = (weather) => {
     icon = require("../assets/snow.svg");
     weatherCondition = "Snowy";
   }
+  if (weather.toLowerCase().includes("smoke")) {
+    icon = require("../assets/smoky.svg");
+    weatherCondition = "Smoky";
+  }
   if (weather.toLowerCase().includes("nil")) {
     icon = require("../assets/number.svg");
     weatherCondition = "Nil";
