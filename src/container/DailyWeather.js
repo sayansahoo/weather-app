@@ -7,9 +7,10 @@ const StyledContainer = styled.div`
   margin: 25px auto 25px auto;
   justify-content: space-around;
   position: relative;
-  width: 80vw;
+  width: 90vw;
   @media (max-width: 480px) {
     overflow-x: scroll;
+    margin: 15px auto 15px auto;
   }
 `;
 
@@ -17,10 +18,13 @@ const StyledSecondContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 80vw;
+  @media(max-width: 480px) {
+    width: 90vw;
+  }
 `;
 
 const StyledList = styled.div`
-  min-width: 100px;
+  min-width: 70px;
   min-height: 40px;
   scroll: scroll;
   display: flex;
@@ -54,12 +58,14 @@ const DailyWeather = (props) => {
     <StyledContainer>
       <StyledSecondContainer>
         {days.map((day, idx) => {
+          let max = Math.floor(day.temp.max);
+          let min = Math.floor(day.temp.min);
           return (
             <StyledList key={idx}>
               <div style={{ fontWeight: "bold" }}>{getDay(day.dt)}</div>
               <div>
-                <StyledSpanMax>{`${day.temp.max}°`}</StyledSpanMax>&nbsp;
-                <StyledSpanMin>{`${day.temp.min}°`}</StyledSpanMin>
+                <StyledSpanMax>{`${max}°`}</StyledSpanMax>&nbsp;
+                <StyledSpanMin>{`${min}°`}</StyledSpanMin>
               </div>
               <StyledImage src={getIcon(day.weather[0].main).icon} />
               <div>{getIcon(day.weather[0].main).weatherCondition}</div>

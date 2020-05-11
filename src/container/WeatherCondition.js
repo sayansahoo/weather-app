@@ -8,13 +8,14 @@ const StyledContainer = styled.div`
 `;
 
 const StyledBox = styled.div`
-  background: rgb(230, 255, 255);
+  background: rgba(230, 255, 255, 0.4);
   min-width: 120px;
-  text-align: center;
-  padding: 10px 0 10px 0;
-  @media (min-width: 700px) {
+  padding: 2px 0 2px 10px;;
+  @media (min-width: 480px) {
     width: 300px;
     height: 90px;
+    padding: 10px 0 10px 0;
+    text-align: center;
   }
 `;
 

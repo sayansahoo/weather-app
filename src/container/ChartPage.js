@@ -17,7 +17,7 @@ class ChartPage extends Component {
       <Line
         data={data}
         width={1000}
-        height={150}
+        height={120}
         options={{
           responsive: false,
           legend: { display: false },
@@ -25,7 +25,7 @@ class ChartPage extends Component {
           scales: {
             yAxes: [{ display: false, ticks: { stepSize: 6 } }],
             xAxes: [
-              {
+              { 
                 ticks: {
                   maxTicksLimit: 30,
                   fontColor: "grey",

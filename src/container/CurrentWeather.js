@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { getIcon } from '../utils/helper';
 
 const StyledContainer = styled.div`
-  margin: 20px 0 0 15px;
+  margin: 10px 0 0 25px;
   align-self: start;
+  @media(min-width: 480px) {
+    margin:  20px 0 0 55px;
+  }
 `;
 
 const CurrentWeather = (props) => {
@@ -15,10 +18,10 @@ const CurrentWeather = (props) => {
     <StyledContainer>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div
-          style={{ fontSize: "55px", fontWeight: "bold" }}
+          style={{ fontSize: "45px", fontWeight: "bold" }}
         >{`${data.current.temp}°C`}</div>{" "}
         &emsp;
-        <img style={{ height: 60, width: 60 }} src={getIcon(weather).icon} />
+        <img style={{ height: 55, width: 55 }} src={getIcon(weather).icon} />
       </div>
     </StyledContainer>
   );

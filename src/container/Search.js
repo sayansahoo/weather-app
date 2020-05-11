@@ -7,23 +7,23 @@ import { fetchCityWeather } from "../utils/api";
 import { getIcon } from "../utils/helper";
 
 const StyledContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 15px;
 `;
 
 const StyledSearchContainer = styled.div`
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   padding: 5px 15px 5px 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 `;
 
 const StyledInput = styled.input`
   width: 100%;
-  height: 40px;
+  height: 35px;
   border-radius: 10px;
   border: none;
   outline: green;
@@ -34,29 +34,34 @@ const StyledInput = styled.input`
 `;
 
 const StyledDropdown = styled.div`
-  width: 75%;
-  margin: 5px auto 20px auto;
+  width: 90%;
+  margin: 2px auto 20px auto;
   z-index: 9;
   position: absolute;
   background: white;
   left: 0;
   right: 0;
   border-radius: 10px;
-  border: ${props=>!props.isClicked && '0.6px solid grey'};
-  padding: 10px;
+  // border: ${props=>!props.isClicked && '0.6px solid grey'};
+  padding: 10px 0 10px 0;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 `;
 
 const StyledList = styled.div`
-  border-bottom: 0.2px solid grey;
+  border-bottom: 0.1px solid grey;
   width: 100%;
-  min-height: 50px;
-  line-height: 50px;
+  min-height: 40px;
+  line-height: 40px;
   box-size: border-box;
-  padding: 0 10px;
+  padding: 0 15px;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  &: last-child {
+    border-bottom: none;
+  }
 `;
+
 
 const StyledImage = styled.img`
   height: 30px;
@@ -130,9 +135,9 @@ class SampleSearch extends Component {
   };
 
   render() {
-    const { searchTerm, suggestions, isClicked } = this.state;
+    let { searchTerm, suggestions, isClicked } = this.state;
     const { getUserLocation } = this.props;
-    
+    suggestions = suggestions.slice(0,2);
     return (
       <StyledContainer>
         <StyledSearchContainer>

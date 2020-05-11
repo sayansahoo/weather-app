@@ -19,19 +19,18 @@ const StyledMainContainer = styled.div`
 const StyledChartContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 25px;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  margin: 25px auto 25px auto;
+  width: 90%;
+  margin: 25px auto 15px auto;
   border: 0.1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 `;
 
 const StyledContainer = styled.div`
-  height: 30vh;
-  width: 100%;
+  // height: 30vh;
+  width: 90%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -59,7 +58,7 @@ class Home extends Component {
       datasets: [
         {
           fill: false,
-          lineTension: 0.3,
+          lineTension: 0.5,
           backgroundColor: "white",
           borderColor: "rgb(0, 172, 230,1)",
           borderWidth: 2,
@@ -110,7 +109,7 @@ class Home extends Component {
     for (let i = 0; i < data.labels.length; i++) {
       data.labels[i] = [data.labels[i]];
     }
-    let temperature = weatherData.hourly.map((a) => a.temp).slice(0, 24);
+    let temperature = weatherData.hourly.map((a) => Math.floor(a.temp)).slice(0, 24);
     temperature = temperature.slice(0, 24);
     if(data.datasets[0].data.length> 0) {
       data.datasets[0].data = [];

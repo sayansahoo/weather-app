@@ -2,19 +2,19 @@ export const getTime = (time) => {
   let hours = ``;
   let suffix = "";
   if (time > 12 && time < 24) {
-    suffix = "PM";
+    suffix = "pm";
     hours = `${time - 12}${suffix}`;
   }
   if (time >= 1 && time < 12) {
-    suffix = "AM";
+    suffix = "am";
     hours = `${time}${suffix}`;
   }
   if (time === 24) {
-    suffix = "AM";
+    suffix = "am";
     hours = `${12}${suffix}`;
   }
   if (time === 12) {
-    suffix = "PM";
+    suffix = "pm";
     hours = `${12}${suffix}`;
   }
   return hours;
