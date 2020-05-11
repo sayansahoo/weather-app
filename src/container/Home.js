@@ -15,6 +15,7 @@ const StyledMainContainer = styled.div`
   @media (max-width: 480px) {
     overflow: hidden;
   }
+  height: 100vh;
 `;
 
 const StyledChartContainer = styled.div`
@@ -27,6 +28,9 @@ const StyledChartContainer = styled.div`
   margin: 25px auto 15px auto;
   border: 0.1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  @media(max-width: 480px) {
+    height: 68vh;
+  }
 `;
 
 const StyledContainer = styled.div`

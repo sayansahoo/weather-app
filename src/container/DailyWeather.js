@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
   justify-content: space-around;
   position: relative;
   width: 90vw;
+  height:16vh;
   @media (max-width: 480px) {
     overflow-x: scroll;
     margin: 15px auto 15px auto;
@@ -25,7 +26,6 @@ const StyledSecondContainer = styled.div`
 
 const StyledList = styled.div`
   min-width: 70px;
-  min-height: 40px;
   scroll: scroll;
   display: flex;
   flex-direction: column;
