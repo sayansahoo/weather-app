@@ -44,7 +44,7 @@ const StyledDropdown = styled.div`
   border-radius: 10px;
   // border: ${props=>!props.isClicked && '0.6px solid grey'};
   padding: 10px 0 10px 0;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: ${props=> !props.isClicked && '1px 1px 10px rgba(0, 0, 0, 0.3)'};
 `;
 
 const StyledList = styled.div`
