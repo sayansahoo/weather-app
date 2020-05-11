@@ -9,6 +9,7 @@ import WeatherCondition from "./WeatherCondition";
 import DailyWeather from "./DailyWeather";
 import SunTimings from "./SunTimingsChart";
 import { Skeleton } from "@material-ui/lab";
+import { blue } from "@material-ui/core/colors";
 
 const StyledMainContainer = styled.div`
   @media (max-width: 480px) {

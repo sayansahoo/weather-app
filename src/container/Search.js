@@ -153,8 +153,8 @@ class SampleSearch extends Component {
           />
           <FontAwesomeIcon icon={faSearch} size="lg" />
         </StyledSearchContainer>
-        {suggestions && searchTerm.length > 0 && (
-          <StyledDropdown isClicked={isClicked}>
+        {suggestions.length>0 && searchTerm.length > 0 && (
+          <StyledDropdown isClicked={suggestions.length> 0 && isClicked}>
             {searchTerm.length > 0 &&
               !isClicked &&
               suggestions.map((a, idx) => {
