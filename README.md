@@ -12,4 +12,4 @@ To run the project, follow the below steps
 
 Also, clone and run the related backend code for weather APP to run this project. 
 
-
+## Live link - https://weather-app-frontend.herokuapp.com/ (this is optimized for mobile only)
